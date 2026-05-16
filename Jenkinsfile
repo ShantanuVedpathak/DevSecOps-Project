@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "shantanuvedpathak01/netflix-devsecops"
+        DOCKER_IMAGE = "shantanuvedpathak01/netflix-devsecops:latest"
         CONTAINER_NAME = "netflix-devsecops"
     }
 
@@ -57,7 +57,7 @@ pipeline {
             steps {
 
                 withCredentials([
-                    usernamePassword(
+                  usernamePassword(
                         credentialsId: 'dockerhub',
                         usernameVariable: 'DOCKER_USER',
                         passwordVariable: 'DOCKER_PASS'
@@ -67,7 +67,7 @@ pipeline {
                     sh '''
                     echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
 
-                    docker push $DOCKER_IMAGE
+                    docker push $DOCKER_IMAGE --disable-content-trust
                     '''
                 }
             }
