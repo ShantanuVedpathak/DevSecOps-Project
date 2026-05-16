@@ -18,7 +18,7 @@ pipeline {
             steps {
                 git branch: 'main',
                 credentialsId: 'github-creds',
-                url: 'https://github.com/ShantanuVedpathak01/DevSecOps-Project.git'
+                url: 'https://github.com/ShantanuVedpathak/DevSecOps-Project.git'
             }
         }
 
