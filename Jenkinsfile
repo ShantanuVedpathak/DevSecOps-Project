@@ -28,21 +28,13 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-
-                withCredentials([
-                    string(
-                        credentialsId: 'tmdb-api-key',
-                        variable: 'TMDB_KEY'
-                    )
-                ]) {
-
-                    sh '''
-                    docker build \
-                    --build-arg REACT_APP_TMDB_API_KEY=$TMDB_KEY \
-                    -t $DOCKER_IMAGE .
-                    '''
+        stage("Docker Build image"){
+            steps{
+                script{   
+                       sh "docker build --build-arg TMDB_V3_API_KEY=a7e0428cc5070744019a0ed61a4d8abf -t netflix-devsecops ."
+                       sh "docker tag netflix shantanuvedpathak01/netflix-devsecops:latest "
+                      
+                    }
                 }
             }
         }
