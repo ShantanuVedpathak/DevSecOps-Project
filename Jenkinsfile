@@ -17,6 +17,7 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git branch: 'main',
+                credentialsId: 'github-creds',
                 url: 'https://github.com/ShantanuVedpathak01/DevSecOps-Project.git'
             }
         }
